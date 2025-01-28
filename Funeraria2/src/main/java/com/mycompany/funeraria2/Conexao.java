@@ -14,7 +14,8 @@ public class Conexao {
     public static void ConectarFirebase() {
         try {
             // Acesse o arquivo de credenciais (verifique o caminho)
-            FileInputStream serviceAccount = new FileInputStream("fune.json"); // Ajuste o caminho se necessário
+            FileInputStream serviceAccount = new FileInputStream(
+                    "Funeraria2\\fune.json"); // Caminho do JSON
 
             FirebaseOptions options = FirebaseOptions.builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
