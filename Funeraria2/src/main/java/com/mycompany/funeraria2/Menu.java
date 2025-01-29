@@ -34,6 +34,10 @@ public class Menu {
                 case 4:
                     excluir();
                     break;
+
+                case 5:
+                    System.out.println("Saindo......");
+                    break;
                 default:
                     System.out.println("Opção inválida.");
             }
@@ -141,7 +145,7 @@ public class Menu {
             dados.put("Local para onde será levado o corpo", local);
         }
 
-        String documentoId = nomeCompleto + dataNasci;
+        String documentoId = nomeCompleto + rg;
         String colecao = "Funeraria";
 
         CrudFirestore.criarDocumento(colecao, documentoId, dados);
@@ -152,10 +156,10 @@ public class Menu {
         System.out.print("Digite o nome completo do falecido para atualizar: ");
         text.nextLine();
         String nomeCompleto = text.nextLine();
-        System.out.print("Digite a data de nascimento: ");
-        String dataNasci = text.nextLine();
+        System.out.print("Digite o RG: ");
+        String rg = text.nextLine();
 
-        String documentoId = nomeCompleto + dataNasci;
+        String documentoId = nomeCompleto + rg;
         String colecao = "Funeraria";
 
         if (!CrudFirestore.documentoExiste(colecao, documentoId)) {
@@ -221,10 +225,10 @@ public class Menu {
         System.out.print("Digite o nome completo do falecido: ");
         text.nextLine();
         String nomeCompleto = text.nextLine();
-        System.out.print("Digite a data de nascimento: ");
-        String dataNasci = text.nextLine();
+        System.out.print("Digite o RG: ");
+        String rg = text.nextLine();
 
-        String documentoId = nomeCompleto + "" + dataNasci;
+        String documentoId = nomeCompleto + "" + rg;
         String colecao = "Funeraria";
 
         Map<String, Object> dados = CrudFirestore.buscarDocumento(colecao, documentoId);
@@ -249,10 +253,10 @@ public class Menu {
         System.out.print("Digite o nome completo do falecido para excluir: ");
         text.nextLine();
         String nomeCompleto = text.nextLine();
-        System.out.print("Digite a data de nascimento: ");
-        String dataNasci = text.nextLine();
+        System.out.print("Digite o RG: ");
+        String rg = text.nextLine();
 
-        String documentoId = nomeCompleto + dataNasci;
+        String documentoId = nomeCompleto + rg;
         String colecao = "Funeraria";
 
         if (!CrudFirestore.documentoExiste(colecao, documentoId)) {
