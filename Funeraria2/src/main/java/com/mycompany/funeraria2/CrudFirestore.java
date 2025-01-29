@@ -2,8 +2,11 @@ package com.mycompany.funeraria2;
 
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
+import com.google.firebase.cloud.FirestoreClient;
+
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 public class CrudFirestore {
 
@@ -18,25 +21,6 @@ public class CrudFirestore {
             System.out.println("Documento criado em: " + resultado.get().getUpdateTime());
         } catch (Exception e) {
             System.err.println("Erro ao criar documento: " + e.getMessage());
-        }
-    }
-
-    // READ - Ler um documento do Firebase
-    public static void lerDocumento(String colecao, String documentoId) {
-        Firestore db = Conexao.bd;
-
-        DocumentReference docRef = db.collection(colecao).document(documentoId);
-        ApiFuture<DocumentSnapshot> futuro = docRef.get();
-
-        try {
-            DocumentSnapshot documento = futuro.get();
-            if (documento.exists()) {
-                System.out.println("Dados do documento: " + documento.getData());
-            } else {
-                System.out.println("Documento não encontrado.");
-            }
-        } catch (Exception e) {
-            System.err.println("Erro ao ler documento: " + e.getMessage());
         }
     }
 
@@ -63,6 +47,32 @@ public class CrudFirestore {
             System.out.println("Documento deletado em: " + resultado.get().getUpdateTime());
         } catch (Exception e) {
             System.err.println("Erro ao deletar documento: " + e.getMessage());
+        }
+    }
+
+    public static boolean documentoExiste(String colecao, String documentoId) {
+        Firestore db = FirestoreClient.getFirestore();
+        try {
+            DocumentSnapshot document = db.collection(colecao).document(documentoId).get().get();
+            return document.exists();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static Map<String, Object> buscarDocumento(String colecao, String documentoId) {
+        Firestore db = FirestoreClient.getFirestore();
+        try {
+            DocumentSnapshot document = db.collection(colecao).document(documentoId).get().get();
+            if (document.exists()) {
+                return document.getData(); // Retorna os dados do documento
+            } else {
+                return null; // Documento não encontrado
+            }
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }
