@@ -17,7 +17,7 @@ public class Metodos {
         System.out.println("============== FUNERARIA SANTA MARIA ============== ");
 
         System.out.print("Nome completo: ");
-        text.nextLine();
+
         String nomeCompleto = text.nextLine();
         fune.setNomeCompleto(nomeCompleto);
 
@@ -81,7 +81,7 @@ public class Metodos {
                     break;
                 case 4:
                     servicos.add("Traslado do corpo");
-                    System.out.print("Local para onde será levado o corpo: ");
+                    System.out.print("Local de destino: ");
                     local = text.nextLine();
                     break;
                 case 5:
@@ -194,8 +194,11 @@ public class Metodos {
 
     public static void buscar() {
         System.out.print("Digite o nome completo do falecido: ");
-        text.nextLine();
         String nomeCompleto = text.nextLine();
+
+        // Caso de erro no input de dados, descomentar a linha abaixo
+        // text.nextLine();
+
         System.out.print("Digite o RG: ");
         String rg = text.nextLine();
 
