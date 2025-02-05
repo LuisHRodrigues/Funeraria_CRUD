@@ -3,12 +3,12 @@ package com.mycompany.funeraria2;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
-
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 public class CrudFirestore {
+    // ################################################################################################################################//
+    // ################################################################################################################################//
 
     // CREATE - Adicionar um documento ao Firebase
     public static void criarDocumento(String colecao, String documentoId, Map<String, Object> dados) {
@@ -24,6 +24,9 @@ public class CrudFirestore {
         }
     }
 
+    // ################################################################################################################################//
+    // ################################################################################################################################//
+
     // UPDATE - Atualizar um documento do Firebase
     public static void atualizarDocumento(String colecao, String documentoId, Map<String, Object> novosDados) {
         Firestore db = Conexao.bd;
@@ -36,6 +39,9 @@ public class CrudFirestore {
             System.err.println("Erro ao atualizar documento: " + e.getMessage());
         }
     }
+
+    // ################################################################################################################################//
+    // ################################################################################################################################//
 
     // DELETE - Remover um documento do Firebase
     public static void deletarDocumento(String colecao, String documentoId) {
@@ -50,6 +56,9 @@ public class CrudFirestore {
         }
     }
 
+    // ################################################################################################################################//
+    // ################################################################################################################################//
+
     public static boolean documentoExiste(String colecao, String documentoId) {
         Firestore db = FirestoreClient.getFirestore();
         try {
@@ -60,6 +69,9 @@ public class CrudFirestore {
             return false;
         }
     }
+
+    // ################################################################################################################################//
+    // ################################################################################################################################//
 
     public static Map<String, Object> buscarDocumento(String colecao, String documentoId) {
         Firestore db = FirestoreClient.getFirestore();
